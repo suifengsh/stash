@@ -1,0 +1,23 @@
+name: SSID
+desc: MAC MINI
+
+proxy-groups:
+  - name: SSID
+    type: select
+    proxies:
+      - WGHome
+      - DIRECT
+    ssid-policy:
+      "SamHome5G": DIRECT  
+      "SamHome": DIRECT  
+      cellular: WGHome
+      default: WGHome
+
+rules:
+  - PROCESS-NAME,java,SSID,no-resolve
+  - PROCESS-NAME,XStreaming Helper,SSID,no-resolve
+  - PROCESS-NAME,XStreaming,SSID,no-resolve
+  - PROCESS-NAME,OneCast,SSID,no-resolve
+  - PROCESS-NAME,RemotePlay,SSID,no-resolve
+  - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
+  - IP-CIDR,192.168.1.0/24,SSID,no-resolve
