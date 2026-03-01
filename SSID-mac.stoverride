@@ -20,4 +20,4 @@ rules:
   - PROCESS-NAME,OneCast,SSID,no-resolve
   - PROCESS-NAME,RemotePlay,SSID,no-resolve
   - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
-  - IP-CIDR,192.168.1.0/24,SSID,no-resolve
+  - IP-CIDR,192.168.1.0/24,SSID,no-resolve #!replace
