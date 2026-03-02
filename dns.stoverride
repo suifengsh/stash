@@ -1,1 +1,20 @@
-qqq
+name: DNS 覆写
+desc: 优化解析、防泄露、自定义映射
+
+# 全局替换 DNS 配置（!replace 表示完全覆盖原配置）
+dns: #!replace
+  enable: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - system
+    - 223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    - https://dns.alidns.com/dns-query  # 阿里 DoH
+    - https://1.1.1.1/dns-query          # Cloudflare DoH
+    - https://8.8.8.8/dns-query          # Google DoH
+  # 按域名指定 DNS（分流解析）
+  nameserver-policy:
+    '+.google.com': https://8.8.8.8/dns-query
+    '+.github.com': https://1.1.1.1/dns-query
+    '+.internal.lan': system  # 内网用系统 DNS
