@@ -1,20 +1,37 @@
-name: DNS 覆写
-desc: 优化解析、防泄露、自定义映射
+name: DNS 通用覆写 · 全网络兼容
+desc: 公共WiFi / 5G / 家庭网络通用，防泄露、稳解析
 
-# 全局替换 DNS 配置（!replace 表示完全覆盖原配置）
-dns: #!replace
+dns: !replace
   enable: true
   listen: 0.0.0.0:53
+  ipv6: false
+
+  # 仅用于解析 DoH 地址，不参与业务解析
   default-nameserver:
-    - system
     - 223.5.5.5
     - 114.114.114.114
+
+  # 主 DNS（加密、安全、通用）
   nameserver:
-    - https://dns.alidns.com/dns-query  # 阿里 DoH
-    - https://1.1.1.1/dns-query          # Cloudflare DoH
-    - https://8.8.8.8/dns-query          # Google DoH
-  # 按域名指定 DNS（分流解析）
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+
+  # 域名级分流（最实用、最通用）
   nameserver-policy:
-    '+.google.com': https://8.8.8.8/dns-query
+    '+.google.com': https://dns.google/dns-query
+    '+.googleapis.com': https://dns.google/dns-query
+    '+.gstatic.com': https://dns.google/dns-query
+    '+.youtube.com': https://dns.google/dns-query
     '+.github.com': https://1.1.1.1/dns-query
-    '+.internal.lan': system  # 内网用系统 DNS
+    '+.githubusercontent.com': https://1.1.1.1/dns-query
+    '+.lan': system
+    '+.local': system
+    '+.home': system
+
+  # 防泄露、通用稳定模式
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  cache-size: 4096
