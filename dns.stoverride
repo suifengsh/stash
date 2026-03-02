@@ -1,37 +1,37 @@
-name: DNS 通用覆写 · 全网络兼容
-desc: 公共WiFi / 5G / 家庭网络通用，防泄露、稳解析
+name: DNS 双运营商·上海电信+广电卡 极速
+desc: iPhone/Mac通用，电信/广电/5G/公共WiFi全兼容
 
 dns: !replace
   enable: true
   listen: 0.0.0.0:53
   ipv6: false
 
-  # 仅用于解析 DoH 地址，不参与业务解析
+  # 双运营商兜底（广电+电信都快）
   default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
+    - 223.5.5.5       # 阿里（广电/电信通用最快）
+    - 119.29.29.29    # 腾讯（广电友好）
+    - 202.96.209.5    # 上海电信主DNS
 
-  # 主 DNS（加密、安全、通用）
+  # 主DoH（广电+电信双优组合）
   nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-    - https://1.1.1.1/dns-query
-    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query  # 阿里DoH（上海节点最快）
+    - https://doh.pub/dns-query         # 腾讯DoH（广电/电信都稳）
+    - https://1.1.1.1/dns-query         # Cloudflare（国际最快）
 
-  # 域名级分流（最实用、最通用）
+  # 域名分流（广电+电信实测最优）
   nameserver-policy:
-    '+.google.com': https://dns.google/dns-query
-    '+.googleapis.com': https://dns.google/dns-query
-    '+.gstatic.com': https://dns.google/dns-query
-    '+.youtube.com': https://dns.google/dns-query
+    '+.google.com': https://1.1.1.1/dns-query
+    '+.googleapis.com': https://1.1.1.1/dns-query
+    '+.gstatic.com': https://1.1.1.1/dns-query
     '+.github.com': https://1.1.1.1/dns-query
     '+.githubusercontent.com': https://1.1.1.1/dns-query
     '+.lan': system
     '+.local': system
     '+.home': system
 
-  # 防泄露、通用稳定模式
-  enhanced-mode: redir-host
+  # 苹果设备最优模式
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  cache-size: 4096
+  cache-size: 8192
+  concurrent: true  # 并发取最快结果
