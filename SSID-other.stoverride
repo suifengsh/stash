@@ -6,14 +6,14 @@ proxy-groups:
     type: select
     proxies:
       - Home
+      - Home2
       - DIRECT
     ssid-policy:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
-      "303": Home
-      cellular: Home
-      default: Home
+      cellular: Home2
+      default: Home2
 
 rules:
   - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
-  - IP-CIDR,192.168.1.0/24,SSID,no-resolve #!replace
+  - IP-CIDR,192.168.1.0/24,SSID,no-resolve
