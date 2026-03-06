@@ -12,8 +12,8 @@ proxy-groups:
     ssid-policy:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
-      cellular: Home
-      default: Home
+      cellular: Home2
+      default: Home2
 
 rules:
   - PROCESS-NAME,java,WGHome,no-resolve
