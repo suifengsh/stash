@@ -7,12 +7,13 @@ proxy-groups:
     proxies:
       - Home
       - Home2
+      - WGHome
       - DIRECT
     ssid-policy:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
-      cellular: Home2
-      default: Home2
+      cellular: Home
+      default: Home
 
 rules:
   - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
