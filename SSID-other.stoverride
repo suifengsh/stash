@@ -1,5 +1,5 @@
 name: SSID
-desc: 其他
+desc: 自用
 
 proxy-groups:
   - name: SSID
