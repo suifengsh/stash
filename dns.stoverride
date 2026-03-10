@@ -1,24 +1,24 @@
-name: DNS 双运营商·上海电信+广电卡 极速
-desc: iPhone/Mac通用，电信/广电/5G/公共WiFi全兼容
-
+name: DNS 优先系统·青浦电信自适应
+desc: 5G/宽带自动用系统DNS，国内稳、国际快
 dns: !replace
   enable: true
   listen: 0.0.0.0:53
   ipv6: false
 
-  # 双运营商兜底（广电+电信都快）
   default-nameserver:
-    - 223.5.5.5       # 阿里（广电/电信通用最快）
-    - 119.29.29.29    # 腾讯（广电友好）
-    - 202.96.209.5    # 上海电信主DNS
+    - system
 
-  # 主DoH（广电+电信双优组合）
+  # 青浦电信 DNS 顺序已调换：116.228.111.118 在前，180.168.255.18 在后
+  fallback-nameserver:
+    - 116.228.111.118   # 青浦电信备DNS → 现在优先
+    - 180.168.255.18    # 青浦电信主DNS → 现在兜底
+    - 223.5.5.5
+    - 202.96.209.5
+
   nameserver:
-    - https://dns.alidns.com/dns-query  # 阿里DoH（上海节点最快）
-    - https://doh.pub/dns-query         # 腾讯DoH（广电/电信都稳）
-    - https://1.1.1.1/dns-query         # Cloudflare（国际最快）
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
 
-  # 域名分流（广电+电信实测最优）
   nameserver-policy:
     '+.google.com': https://1.1.1.1/dns-query
     '+.googleapis.com': https://1.1.1.1/dns-query
@@ -28,10 +28,10 @@ dns: !replace
     '+.lan': system
     '+.local': system
     '+.home': system
+    '+': system
 
-  # 苹果设备最优模式
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   cache-size: 8192
-  concurrent: true  # 并发取最快结果
+  concurrent: true
