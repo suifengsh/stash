@@ -16,6 +16,7 @@ proxy-groups:
       default: Home2
 
 rules:
+  - PROCESS-NAME,PeaSyo4Desk,WGHome,no-resolve
   - PROCESS-NAME,java,WGHome,no-resolve
   - PROCESS-NAME,XStreaming Helper,WGHome,no-resolve
   - PROCESS-NAME,XStreaming,WGHome,no-resolve
