@@ -5,9 +5,8 @@ proxy-groups:
   - name: SSID
     type: select
     proxies:
-      - Home
       - Home-ds
-      - WGHome
+      - WGHome-fn
       - DIRECT
     ssid-policy:
       "SamHome5G": DIRECT  
@@ -16,12 +15,12 @@ proxy-groups:
       default: Home-ds
 
 rules:
-  - PROCESS-NAME,PeaSyo4Desk,WGHome,no-resolve
-  - PROCESS-NAME,PeaSyo4Desk Helper,WGHome,no-resolve
-  - PROCESS-NAME,java,WGHome,no-resolve
-  - PROCESS-NAME,XStreaming Helper,WGHome,no-resolve
-  - PROCESS-NAME,XStreaming,WGHome,no-resolve
-  - PROCESS-NAME,OneCast,WGHome,no-resolve
-  - PROCESS-NAME,RemotePlay,WGHome,no-resolve
+  - PROCESS-NAME,PeaSyo4Desk,WGHome-fn,no-resolve
+  - PROCESS-NAME,PeaSyo4Desk Helper,WGHome-fn,no-resolve
+  - PROCESS-NAME,java,WGHome-fn,no-resolve
+  - PROCESS-NAME,XStreaming Helper,WGHome-fn,no-resolve
+  - PROCESS-NAME,XStreaming,WGHome-fn,no-resolve
+  - PROCESS-NAME,OneCast,WGHome-fn,no-resolve
+  - PROCESS-NAME,RemotePlay,WGHome-fn,no-resolve
   - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
   - IP-CIDR,192.168.1.0/24,SSID,no-resolve #!replace
