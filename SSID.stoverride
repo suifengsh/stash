@@ -5,14 +5,14 @@ proxy-groups:
   - name: SSID
     type: select
     proxies:
-      - Home-ds
+      - Home-fn
       - WGHome-fn
       - DIRECT
     ssid-policy:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
-      cellular: Home-ds
-      default: Home-ds
+      cellular: Home-fn
+      default: Home-fn
 
 rules:
   - PROCESS-NAME,PeaSyo4Desk,WGHome-fn,no-resolve
