@@ -12,7 +12,7 @@ proxy-groups:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
       cellular: Home-fn
-      default: Home-fn
+      default: WGHome-fn
 
 rules:
   - PROCESS-NAME,PeaSyo4Desk,WGHome-fn,no-resolve
