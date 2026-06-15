@@ -11,8 +11,8 @@ proxy-groups:
     ssid-policy:
       "SamHome5G": DIRECT  
       "SamHome": DIRECT  
-      cellular: Home-fn
-      default: Home-fn
+      cellular: Home-ds
+      default: Home-ds
 
 rules:
   - DOMAIN-SUFFIX,zte.home,SSID,no-resolve
